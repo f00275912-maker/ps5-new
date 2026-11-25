@@ -24,7 +24,7 @@ from pathlib import Path
 import requests
 
 # ----------------------- INSTELLINGEN -----------------------
-MAX_PRIJS = 550          # euro
+MAX_PRIJS = 600          # euro
 MIN_PRIJS = 200          # alles daaronder is meestal een accessoire, nepadvertentie of oplichting
 ZOEKTERMEN = ["playstation 5", "ps5 console", "ps5 digital", "playstation 5 disc"]
 CONTROLEER_ELKE_SECONDEN = 600   # 10 minuten, niet te laag zetten
