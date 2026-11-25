@@ -4,6 +4,11 @@ on:
   schedule:
     - cron: "*/15 * * * *"
   workflow_dispatch:
+    inputs:
+      testmail:
+        description: "Stuur alleen een testmail"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -25,7 +30,15 @@ jobs:
 
       - run: pip install -r requirements.txt
 
+      - name: Stuur testmail
+        if: ${{ github.event.inputs.testmail == 'true' }}
+        env:
+          GMAIL_ADRES: ${{ secrets.GMAIL_ADRES }}
+          GMAIL_APP_WACHTWOORD: ${{ secrets.GMAIL_APP_WACHTWOORD }}
+        run: python ps5_bot.py --test
+
       - name: Zoek naar deals
+        if: ${{ github.event.inputs.testmail != 'true' }}
         env:
           GMAIL_ADRES: ${{ secrets.GMAIL_ADRES }}
           GMAIL_APP_WACHTWOORD: ${{ secrets.GMAIL_APP_WACHTWOORD }}
